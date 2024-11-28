@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <title>Panel de Control</title>
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <h4 class="navbar-title">Sistema de Encuestas UVM</h4>
+      <button id="logoutButton" class="navbar-icon bg-primary rounded">Cerrar Sesión</button>
+    </div>
+  </nav>
+
+  <!-- Bienvenida -->
+  <header class="dashboard-header">
+    <h1>Bienvenido al Sistema de Encuestas</h1>
+  </header>
+
+  <!-- Navegación principal -->
+  <div class="dashboard-links">
+    <div class="link-item">
+      <a href="gestionarEncuestas.html" class="link-container">
+        <div class="link-icon">📋</div>
+        <p>Gestionar Encuestas</p>
+      </a>
+    </div>
+    <div class="link-item">
+      <a href="resultados.html" class="link-container">
+        <div class="link-icon">📊</div>
+        <p>Resultados</p>
+      </a>
+    </div>
+    <div class="link-item">
+      <a href="perfil.html" class="link-container">
+        <div class="link-icon">👤</div>
+        <p>Perfil</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Cerrar sesión
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('token'); // Eliminar el token
+      window.location.href = 'index.html'; // Redirigir al login
+    });
+  </script>
+</body>
+</html>
