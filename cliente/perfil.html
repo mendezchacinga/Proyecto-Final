@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/perfil.css">
+  <title>Perfiles</title>
+</head>
+<body>
+  <!-- Barra de navegación -->
+   <nav class="nav-encuestas">
+    <div class="nav-encuestas-container">
+      <a href="dashboard.html" class="nav-encuestas-icon">🏠 Inicio</a>
+      <h4 class="nav-encuestas-title">Gestión de Perfiles</h4>
+    </div>
+    <button id="logoutButton" class="nav-encuestas-logout">Cerrar Sesión</button>
+  </nav>
+
+  <!-- Contenedor principal -->
+  <div class="encuestas-container">
+    <h1 class="encuestas-header">Perfiles Registrados</h1>
+
+    <!-- Tabla de perfiles -->
+    <div class="tabla-perfiles">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody id="listaPerfiles">
+          <!-- Perfiles se cargarán dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Indicador de carga -->
+    <div class="encuestas-loader" id="cargandoPerfiles" style="display: none;">Cargando...</div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/perfil.js"></script>
+  <script>
+    // Cerrar sesión
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('token'); // Eliminar el token
+      window.location.href = 'index.html'; // Redirigir al login
+    });
+  </script>
+</body>
+</html>

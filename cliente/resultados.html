@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/resultados.css">
+  <title>Resultados de Encuestas</title>
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav class="nav-encuestas">
+    <div class="nav-encuestas-container">
+      <a href="dashboard.html" class="nav-encuestas-icon">🏠 Inicio</a>
+      <h4 class="nav-encuestas-title">Resultados de Encuestas</h4>
+    </div>
+    <button id="logoutButton" class="nav-encuestas-logout">Cerrar Sesión</button>
+  </nav>
+
+  <!-- Contenedor Principal -->
+  <div class="resultados-container">
+    <h1 class="resultados-header">Resultados Generales</h1>
+
+    <!-- Resumen General -->
+    <div class="resumen-general">
+      <p>Total de Encuestas: <span id="totalEncuestas">0</span></p>
+      <p>Total de Votos: <span id="totalVotos">0</span></p>
+    </div>
+
+    <!-- Listado de Encuestas -->
+    <div id="listaResultados" class="lista-resultados">
+      <!-- Aquí se cargarán dinámicamente los resultados de las encuestas -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/resultados.js"></script>
+  <script>
+    // Cerrar sesión
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('token'); // Eliminar el token
+      window.location.href = 'index.html'; // Redirigir al login
+    });
+  </script>
+</body>
+</html>

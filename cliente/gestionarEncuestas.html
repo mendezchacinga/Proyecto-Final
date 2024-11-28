@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/gestionarEncuestas.css">
+  <title>Gestionar Encuestas</title>
+</head>
+
+<body>
+  <!-- Barra de navegación -->
+  <nav class="nav-encuestas">
+    <div class="nav-encuestas-container">
+      <a href="dashboard.html" class="nav-encuestas-icon">Inicio🏠</a>
+      <h4 class="nav-encuestas-title">Gestionar Encuestas</h4>
+    </div>
+  </nav>
+
+  <!-- Contenedor principal -->
+  <div class="encuestas-container">
+    <h1 class="encuestas-header">Encuestas Disponibles</h1>
+
+    <!-- Formulario para crear o editar una encuesta (solo visible para admin o moderadores) -->
+    <div class="form-crear-encuesta admin-action moderator-action">
+      <h2 class="form-crear-encuesta-title">Crear Nueva Encuesta</h2>
+      <form id="formularioCrearEncuesta">
+        <input type="text" id="tituloEncuesta" class="form-input" placeholder="Título de la encuesta" required>
+        <textarea id="descripcionEncuesta" class="form-textarea" placeholder="Descripción" rows="3"></textarea>
+        <div id="opcionesContainer">
+          <input type="text" class="form-input opcionInput" placeholder="Opción 1" required>
+        </div>
+        <button type="button" id="agregarOpcion" class="form-button">Agregar Opción</button>
+        <button type="submit" class="form-button">Guardar Encuesta</button>
+        <div class="form-loader" id="cargandoCrearEncuesta" style="display: none;">Guardando...</div>
+      </form>
+    </div>
+
+    <!-- Lista de encuestas -->
+    <div class="encuestas-list" id="listaEncuestas">
+      <!-- Aquí se cargarán las encuestas dinámicamente -->
+    </div>
+
+    <!-- Indicador de carga -->
+    <div class="encuestas-loader" id="cargandoEncuestas" style="display: none;">Cargando...</div>
+  </div>
+
+  <!-- Modal para el formulario de contacto -->
+  <div id="modalContacto" class="modal">
+    <div class="modal-content">
+      <span id="cerrarModalContacto" class="close">&times;</span>
+      <h2>Formulario de Contacto</h2>
+      <form id="formularioContacto">
+        <div class="form-group">
+          <label for="contactoCorreo">Correo</label>
+          <input type="email" id="contactoCorreo" placeholder="Correo" required>
+        </div>
+        <div class="form-group">
+          <label for="contactoTelefono">Número de Teléfono</label>
+          <input type="tel" id="contactoTelefono" placeholder="Número de Teléfono" required>
+        </div>
+        <div class="form-group">
+          <label for="contactoNumero">Número de Teléfono Respaldo</label>
+          <input type="number" id="contactoNumero" placeholder="Número de Teléfono Respaldo" required>
+        </div>
+        <div class="form-group">
+          <label for="contactoFecha">Fecha de Nacimiento</label>
+          <input type="date" id="contactoFecha" required>
+        </div>
+        <div class="form-group">
+          <label for="contactoArchivo">Archivo</label>
+          <input type="file" id="contactoArchivo" required>
+        </div>
+        <button type="submit">Enviar</button>
+        <div class="loader" id="cargandoContacto"></div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/encuesta.js"></script>
+
+
+
+</body>
+
+</html>
