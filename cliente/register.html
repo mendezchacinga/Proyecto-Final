@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/register.css">
+  <title>Registro</title>
+</head>
+<body>
+  <div class="register-container">
+    <h1 class="register-title">Registro</h1>
+    <form id="formularioRegistro" class="register-form">
+      <label for="usuarioRegistro" class="register-label">Usuario</label>
+      <input type="text" id="usuarioRegistro" class="register-input" placeholder="Usuario" required>
+    
+      <label for="correoRegistro" class="register-label">Correo</label>
+      <input type="email" id="correoRegistro" class="register-input" placeholder="Correo" required>
+    
+      <label for="contrasenaRegistro" class="register-label">Contraseña</label>
+      <input type="password" id="contrasenaRegistro" class="register-input" placeholder="Contraseña" required>
+    
+      <label for="rolRegistro" class="register-label">Rol</label>
+      <select id="rolRegistro" class="register-input">
+        <option value="user">Usuario</option>
+        <option value="moderator">Moderador</option>
+        <option value="admin">Administrador</option>
+      </select>
+    
+      <button type="submit" class="register-button">Registrarse</button>
+      <div class="register-loader" id="cargandoRegistro" style="display: none;">Registrando...</div>
+    </form>
+    
+    <p class="register-login">
+      ¿Ya tienes cuenta? <a href="index.html" class="register-login-link">Inicia sesión aquí</a>
+    </p>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
