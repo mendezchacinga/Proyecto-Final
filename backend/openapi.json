@@ -1,0 +1,289 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de la Aplicación",
+    "description": "Documentación de la API para la aplicación.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "summary": "Registro de usuario",
+        "description": "Permite registrar un nuevo usuario.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["username", "email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Usuario registrado exitosamente." },
+          "400": { "description": "Error en la solicitud." }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "Inicio de sesión",
+        "description": "Permite iniciar sesión y obtener un token.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Inicio de sesión exitoso." },
+          "401": { "description": "Credenciales inválidas." },
+          "500": { "description": "Error en el servidor." }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "summary": "Obtener todos los usuarios",
+        "description": "Devuelve una lista de todos los usuarios.",
+        "responses": {
+          "200": { "description": "Lista de usuarios obtenida exitosamente." }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "summary": "Obtener un usuario por ID",
+        "description": "Devuelve los detalles de un usuario por ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Detalles del usuario obtenidos exitosamente." },
+          "404": { "description": "Usuario no encontrado." }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un usuario por ID",
+        "description": "Actualiza la información de un usuario por ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "email": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Usuario actualizado exitosamente." },
+          "400": { "description": "Error en la solicitud." },
+          "404": { "description": "Usuario no encontrado." }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un usuario por ID",
+        "description": "Elimina un usuario por ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Usuario eliminado exitosamente." },
+          "404": { "description": "Usuario no encontrado." }
+        }
+      }
+    },
+    "/api/encuesta": {
+      "get": {
+        "summary": "Obtener todas las encuestas",
+        "description": "Devuelve una lista de todas las encuestas disponibles.",
+        "responses": {
+          "200": { "description": "Lista de encuestas obtenida exitosamente." }
+        }
+      },
+      "post": {
+        "summary": "Crear una nueva encuesta",
+        "description": "Permite crear una nueva encuesta. Solo accesible para administradores.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "options": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                },
+                "required": ["title", "options"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Encuesta creada exitosamente." },
+          "400": { "description": "Error en la solicitud." }
+        }
+      },
+      "put": {
+        "summary": "Actualizar una encuesta",
+        "description": "Actualiza una encuesta existente. Solo accesible para administradores.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "options": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Encuesta actualizada exitosamente." },
+          "400": { "description": "Error en la solicitud." },
+          "404": { "description": "Encuesta no encontrada." }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar una encuesta",
+        "description": "Elimina una encuesta existente. Solo accesible para administradores.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Encuesta eliminada exitosamente." },
+          "404": { "description": "Encuesta no encontrada." }
+        }
+      },
+      "post": {
+        "summary": "Votar en una encuesta",
+        "description": "Permite a los usuarios autenticados votar en una encuesta.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "optionIndex": { "type": "number" }
+                },
+                "required": ["optionIndex"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Voto registrado exitosamente." },
+          "400": { "description": "Error en la solicitud." },
+          "404": { "description": "Encuesta no encontrada." }
+        }
+      }
+    },
+    "/api/contact/enviar": {
+      "post": {
+        "summary": "Enviar formulario de contacto",
+        "description": "Permite enviar un formulario de contacto y registrar el voto.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "correo": { "type": "string" },
+                  "telefono": { "type": "string" },
+                  "numeroRespaldo": { "type": "string" },
+                  "fechaNacimiento": { "type": "string" },
+                  "archivo": { "type": "string", "format": "binary" }
+                },
+                "required": ["correo", "telefono", "numeroRespaldo", "fechaNacimiento", "archivo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Formulario enviado exitosamente." },
+          "400": { "description": "Error en la solicitud." }
+        }
+      }
+    },
+    "/api/contact/contactos": {
+      "get": {
+        "summary": "Obtener todos los contactos",
+        "description": "Devuelve una lista de todos los contactos.",
+        "responses": {
+          "200": { "description": "Lista de contactos obtenida exitosamente." }
+        }
+      }
+    }
+  }
+}
